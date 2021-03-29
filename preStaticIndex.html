@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-2.1.0.js"></script>
+</head>
+<body>
+    <h3>添加联系人</h3>
+    <form action="/addContact" method="POST">
+        <div>
+            <input type="text" name="name" placeholder="联系人姓名">
+        </div>
+        <div>
+            <input type="text" name="phoneNumber" placeholder="联系人电话">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+    <h3>修改</h3>
+    <form action="/revise" method="POST">
+        <div>
+            <input type="text" name="_id" placeholder="要修改的联系人id">
+        </div>
+        <div>
+            <input type="text" name="name" placeholder="联系人名字">
+        </div>
+        <div>
+            <input type="text" name="phoneNumber" placeholder="联系人号码">
+        </div>
+        <button type="submit">提交修改</button>
+    </form>
+    <!-- 前端获取数据,插入数据... -->
+    <!-- 用ajax去访问不同的请求接口 -->
+    <script>
+        // 获取全部联系人,填充到页面中
+        var getAllContact=function(){
+            $.ajax('/getAllContact',function(data){
+                console.log(data)
+            })
+        }
+        // 添加联系人
+        var addContact=function(contactData){
+            $.ajax({
+                type:'POST',
+                url:'/addContact',
+                data:contactData,
+                success:function(res){
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>
